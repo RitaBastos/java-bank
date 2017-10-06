@@ -10,9 +10,19 @@ public class Bank {
     private AccountManager accountManager;
     private Set<Customer> customers = new HashSet<>();
 
+    //private Option option;
+
     public Bank(AccountManager accountManager) {
         this.accountManager = accountManager;
     }
+
+    //public void createaccount(){
+      //  option.execute("Create account");
+    //}
+
+    //public void setOption(Option option) {
+      //  this.option = ;
+    //}
 
     public void addCustomer(Customer customer) {
         customers.add(customer);

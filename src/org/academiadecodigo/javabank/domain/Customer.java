@@ -20,6 +20,8 @@ public class Customer {
         Account account = accountManager.openAccount(accountType);
         accounts.put(account.getId(), account);
         return account.getId();
+
+
     }
 
     public double getBalance(int id) {
@@ -37,4 +39,14 @@ public class Customer {
         return balance;
     }
 
+    public void setAccountMAnager(AccountManager accountMAnager) {
+        this.accountManager = accountMAnager;
+    }
+
+    public void setAccountManager(Customer c1) {
+    }
+
+    public AccountManager getAccountManager() {
+        return accountManager;
+    }
 }

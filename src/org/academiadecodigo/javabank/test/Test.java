@@ -16,6 +16,11 @@ public class Test {
         System.out.println("Customer: " + (customerTest.test() ? "OK" : "FAIL"));
         System.out.println("Bank: " + (bankTest.test() ? "OK" : "FAIL"));
 
+
+
+
+
+
     }
 
 
