@@ -19,9 +19,11 @@ public class MenuView implements View{
         mainMenu.setError(Messages.ERROR_INVALID_OPTION);
         mainMenu.setMessage(Messages.MENU_WELCOME);
 
-        firstmenu.setFirstMenu();
+
 
 
     }
+
+
 
 }
