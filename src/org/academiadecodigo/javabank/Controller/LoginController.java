@@ -31,5 +31,15 @@ public class LoginController {
 
     }
 
+    public void setNextController(MenuController nextController) {
+        this.nextController = nextController;
+    }
 
+    public void setBank(Bank bank) {
+        this.bank = bank;
+    }
+
+    public void setView(View view) {
+        this.view = view;
+    }
 }
