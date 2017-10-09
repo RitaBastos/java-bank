@@ -22,7 +22,7 @@ public class Test {
         SavingsAccountTest savingsAccountTest = new SavingsAccountTest();
         System.out.println("Checking Account: " + Test.getResult(checkingAccountTest.test()));
         System.out.println("Savings Account: " + Test.getResult(savingsAccountTest.test()));
-        System.out.println("create account");
+
     }
 
     private void testCustomer() {
