@@ -4,13 +4,20 @@ import org.academiadecodigo.javabank.domain.account.Account;
 import org.academiadecodigo.javabank.domain.account.AccountType;
 import org.academiadecodigo.javabank.managers.AccountManager;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Customer {
 
+    private int id;
+    private String name;
+
     private AccountManager accountManager;
     private Map<Integer, Account> accounts = new HashMap<>();
+
+    public Customer(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public void setAccountManager(AccountManager accountManager) {
         this.accountManager = accountManager;
@@ -20,8 +27,6 @@ public class Customer {
         Account account = accountManager.openAccount(accountType);
         accounts.put(account.getId(), account);
         return account.getId();
-
-
     }
 
     public double getBalance(int id) {
@@ -31,7 +36,6 @@ public class Customer {
     public double getBalance() {
 
         double balance = 0;
-
         for (Account account : accounts.values()) {
             balance += account.getBalance();
         }
@@ -39,14 +43,22 @@ public class Customer {
         return balance;
     }
 
-    public void setAccountMAnager(AccountManager accountMAnager) {
-        this.accountManager = accountMAnager;
+    public Set<Account> getAccounts() {
+        return new HashSet<>(accounts.values());
     }
 
-    public void setAccountManager(Customer c1) {
+    public Set<Integer> getAccountIds() {
+        return accounts.keySet();
     }
 
-    public AccountManager getAccountManager() {
-        return accountManager;
+    public int getId() {
+        return id;
     }
+
+    public String getName() {
+        return name;
+    }
+
 }
+
+
