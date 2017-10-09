@@ -1,9 +1,9 @@
 package org.academiadecodigo.javabank;
 
-import org.academiadecodigo.javabank.application.BankApplication;
-import org.academiadecodigo.javabank.domain.Bank;
-import org.academiadecodigo.javabank.domain.Customer;
-import org.academiadecodigo.javabank.managers.AccountManager;
+import org.academiadecodigo.javabank.View.BankApplication;
+import org.academiadecodigo.javabank.Model.Bank;
+import org.academiadecodigo.javabank.Model.Customer;
+import org.academiadecodigo.javabank.Controller.AccountManager;
 
 public class App {
 
