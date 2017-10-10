@@ -1,5 +1,6 @@
 package org.academiadecodigo.javabank;
 
+<<<<<<< HEAD
 import org.academiadecodigo.javabank.application.BankApplication;
 import org.academiadecodigo.javabank.domain.Bank;
 import org.academiadecodigo.javabank.domain.Customer;
@@ -23,4 +24,32 @@ public class App {
         BankApplication bankApplication = new BankApplication(bank);
         bankApplication.start();
     }
+=======
+import org.academiadecodigo.javabank.controller.LoginController;
+import org.academiadecodigo.javabank.model.Bank;
+
+public class App {
+
+    private Bank bank;
+
+    public static void main(String[] args) {
+
+        App app = new App();
+        app.bootStrap();
+
+    }
+
+    private void bootStrap() {
+
+        Bootstrap bootstrap = new Bootstrap();
+        bank = bootstrap.generateTestData();
+
+        LoginController loginController = bootstrap.wireObjects(bank);
+
+        // start application
+        loginController.init();
+
+    }
+
+>>>>>>> 7f35b9cba6d94285a095bca5c3e47eae165d0f9d
 }

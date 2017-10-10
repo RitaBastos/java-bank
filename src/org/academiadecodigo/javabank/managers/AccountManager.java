@@ -1,11 +1,18 @@
 package org.academiadecodigo.javabank.managers;
 
+<<<<<<< HEAD
 import org.academiadecodigo.javabank.domain.account.Account;
 import org.academiadecodigo.javabank.domain.account.AccountType;
 import org.academiadecodigo.javabank.domain.account.SavingsAccount;
+=======
+import org.academiadecodigo.javabank.model.account.Account;
+import org.academiadecodigo.javabank.model.account.AccountType;
+>>>>>>> 7f35b9cba6d94285a095bca5c3e47eae165d0f9d
 import org.academiadecodigo.javabank.factories.AccountFactory;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class AccountManager {
@@ -17,6 +24,13 @@ public class AccountManager {
         accountMap = new HashMap<>();
     }
 
+<<<<<<< HEAD
+=======
+    public Account findById(int id) {
+        return accountMap.get(id);
+    }
+
+>>>>>>> 7f35b9cba6d94285a095bca5c3e47eae165d0f9d
     public Account openAccount(AccountType accountType) {
         Account newAccount = accountFactory.createAccount(accountType);
         accountMap.put(newAccount.getId(), newAccount);
