@@ -1,18 +1,14 @@
 package org.academiadecodigo.javabank.test;
 
-<<<<<<< HEAD
-import org.academiadecodigo.javabank.domain.account.Account;
-import org.academiadecodigo.javabank.domain.account.SavingsAccount;
-=======
 import org.academiadecodigo.javabank.model.account.Account;
 import org.academiadecodigo.javabank.model.account.SavingsAccount;
->>>>>>> 7f35b9cba6d94285a095bca5c3e47eae165d0f9d
 
 public class SavingsAccountTest {
 
     public boolean test() {
 
-        Account account = new SavingsAccount(1);
+        Account account = new SavingsAccount();
+        account.setId(1);
 
         // initial balance should be zero
         if (account.getBalance() != 0) {
