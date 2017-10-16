@@ -4,7 +4,7 @@ import org.academiadecodigo.javabank.model.Customer;
 
 import java.util.Set;
 
-public interface CustomerService extends CRUDService<Customer> {
+public interface CustomerService extends GenericDAO<Customer> {
 
     double getBalance(Integer id);
 
