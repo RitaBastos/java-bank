@@ -4,11 +4,15 @@ import org.academiadecodigo.bootcamp.Prompt;
 import org.academiadecodigo.javabank.controller.*;
 import org.academiadecodigo.javabank.controller.transaction.DepositController;
 import org.academiadecodigo.javabank.controller.transaction.WithdrawalController;
+import org.academiadecodigo.javabank.dao.JPAAccountDAO;
+import org.academiadecodigo.javabank.dao.JPACustomerDAO;
 import org.academiadecodigo.javabank.factories.AccountFactory;
 import org.academiadecodigo.javabank.model.Customer;
 import org.academiadecodigo.javabank.services.AccountService;
 import org.academiadecodigo.javabank.services.CustomerService;
 import org.academiadecodigo.javabank.services.AuthServiceImpl;
+import org.academiadecodigo.javabank.services.jpa.JpaAccountService;
+import org.academiadecodigo.javabank.services.jpa.JpaCustomerService;
 import org.academiadecodigo.javabank.view.*;
 
 import java.util.HashMap;
@@ -17,8 +21,11 @@ import java.util.Map;
 public class Bootstrap {
 
     private AuthServiceImpl authService;
-    private CustomerService customerService;
-    private AccountService accountService;
+    private JpaCustomerService customerService;
+    private JpaAccountService accountService;
+    //private JPACustomerDAO customerDAO;
+    //private JPAAccountDAO accountDAO;
+
 
     public Controller wireObjects() {
 
@@ -27,6 +34,7 @@ public class Bootstrap {
 
         // wire services
         authService.setCustomerService(customerService);
+
 
         // wire login controller and view
         LoginController loginController = new LoginController();
@@ -96,11 +104,11 @@ public class Bootstrap {
         this.authService = authService;
     }
 
-    public void setCustomerService(CustomerService customerService) {
+    public void setCustomerService(JpaCustomerService customerService) {
         this.customerService = customerService;
     }
 
-    public void setAccountService(AccountService accountService) {
+    public void setAccountService(JpaAccountService accountService) {
         this.accountService = accountService;
     }
 }

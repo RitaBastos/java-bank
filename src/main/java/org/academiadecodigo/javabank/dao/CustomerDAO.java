@@ -1,9 +1,11 @@
 package org.academiadecodigo.javabank.dao;
 
-import org.academiadecodigo.javabank.model.account.Account;
+import org.academiadecodigo.javabank.model.Customer;
 
-public interface CustomerDAO extends DAO {
+import java.util.Set;
 
+
+public interface CustomerDAO extends DAO<Customer> {
 
 
 }
