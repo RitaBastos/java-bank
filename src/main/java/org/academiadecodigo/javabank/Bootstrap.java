@@ -23,8 +23,8 @@ public class Bootstrap {
     private AuthServiceImpl authService;
     private JpaCustomerService customerService;
     private JpaAccountService accountService;
-    //private JPACustomerDAO customerDAO;
-    //private JPAAccountDAO accountDAO;
+    private JPACustomerDAO customerDAO;
+    private JPAAccountDAO accountDAO;
 
 
     public Controller wireObjects() {

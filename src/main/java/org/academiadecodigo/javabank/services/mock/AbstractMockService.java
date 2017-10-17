@@ -33,8 +33,8 @@ public class AbstractMockService<T extends AbstractModel> implements DAO<T> {
     }
 
     @Override
-    public void delete(Integer id) {
-        modelMap.remove(id);
+    public void delete(T object) {
+        modelMap.remove(object);
     }
 
     private Integer getNextId() {

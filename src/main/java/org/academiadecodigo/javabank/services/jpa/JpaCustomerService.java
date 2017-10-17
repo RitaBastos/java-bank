@@ -26,7 +26,6 @@ public class JpaCustomerService extends AbstractJpaService<Customer> implements 
     @Override
     public double getBalance(Integer id) {
 
-
         try {
 
             transactionManager.beginRead();
@@ -58,12 +57,9 @@ public class JpaCustomerService extends AbstractJpaService<Customer> implements 
     @Override
     public Set<Integer> getCustomerAccountIds(Integer id) {
 
-
         try {
 
             transactionManager.beginRead();
-
-
 
             Customer customer = customerDAO.findById(id);
 
