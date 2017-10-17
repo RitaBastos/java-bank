@@ -16,7 +16,8 @@ public class SessionManager {
         }
     }
 
-    
+
+
     public void stopSession() {
 
         if (em != null) {
@@ -35,4 +36,4 @@ public class SessionManager {
         this.emf = emf;
     }
 }
-}
+

@@ -1,10 +1,10 @@
-package org.academiadecodigo.javabank.services;
+package org.academiadecodigo.javabank.dao;
 
 import org.academiadecodigo.javabank.model.AbstractModel;
 
 import java.util.List;
 
-public interface GenericDAO<T extends AbstractModel> {
+public interface DAO<T extends AbstractModel> {
 
     List<T> findAll();
 
@@ -12,6 +12,6 @@ public interface GenericDAO<T extends AbstractModel> {
 
     T saveOrUpdate(T modelObject);
 
-    void delete(Integer id);
+    void delete(T object);
 
 }
