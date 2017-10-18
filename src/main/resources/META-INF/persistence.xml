@@ -29,9 +29,9 @@
 
     <persistence-unit name="prod" transaction-type="RESOURCE_LOCAL">
 
-       <description>
-           Persistence Unit for Java Bank production environment
-       </description>
+        <description>
+            Persistence Unit for Java Bank production environment
+        </description>
 
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <properties>
