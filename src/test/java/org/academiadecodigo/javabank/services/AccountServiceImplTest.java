@@ -26,7 +26,7 @@ public class AccountServiceImplTest {
         accountDao = mock(AccountDao.class);
 
         accountService = new AccountServiceImpl();
-        accountService.setTransactionManager(tx);
+        //accountService.setTransactionManager(tx);
         accountService.setAccountDao(accountDao);
 
     }

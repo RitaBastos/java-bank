@@ -4,6 +4,7 @@ import org.academiadecodigo.javabank.model.account.Account;
 import org.academiadecodigo.javabank.persistence.TransactionException;
 import org.academiadecodigo.javabank.persistence.TransactionManager;
 import org.academiadecodigo.javabank.persistence.dao.AccountDao;
+import org.springframework.transaction.annotation.Transactional;
 
 public class AccountServiceImpl implements AccountService {
 
@@ -14,43 +15,25 @@ public class AccountServiceImpl implements AccountService {
         this.accountDao = accountDao;
     }
 
-    public void setTransactionManager(TransactionManager tx) {
-        this.tx = tx;
-    }
 
+
+    @Transactional
     @Override
     public Integer add(Account account) {
 
-        Integer id = null;
+        return accountDao.saveOrUpdate(account).getId();
 
-        try {
-
-            tx.beginWrite();
-
-            id = accountDao.saveOrUpdate(account).getId();
-
-            tx.commit();
-
-
-        } catch (TransactionException ex) {
-
-            tx.rollback();
-        }
-
-        return id;
     }
 
+    @Transactional
     @Override
     public void deposit(Integer id, double amount) {
 
-        try {
-
-            tx.beginWrite();
 
             Account account = accountDao.findById(id);
 
             if (account == null) {
-                tx.rollback();
+
                 throw new IllegalArgumentException("invalid account id");
             }
 
@@ -58,54 +41,38 @@ public class AccountServiceImpl implements AccountService {
 
             accountDao.saveOrUpdate(account);
 
-            tx.commit();
 
-        } catch (TransactionException ex) {
-
-            tx.rollback();
-        }
     }
 
+    @Transactional
     @Override
     public void withdraw(Integer id, double amount) {
 
-        try {
+        Account account = accountDao.findById(id);
 
-            tx.beginWrite();
+        if (account == null) {
 
-            Account account = accountDao.findById(id);
-
-            if (account == null) {
-                tx.rollback();
-                throw new IllegalArgumentException("invalid account id");
-            }
-
-            account.debit(amount);
-
-            accountDao.saveOrUpdate(account);
-
-            tx.commit();
-
-        } catch (TransactionException ex) {
-
-            tx.rollback();
+            throw new IllegalArgumentException("invalid account id");
         }
+
+        account.debit(amount);
+
+        accountDao.saveOrUpdate(account);
+
+
     }
+
 
     @Override
     public void transfer(Integer srcId, Integer dstId, double amount) {
 
-        try {
+        Account srcAccount = accountDao.findById(srcId);
+        Account dstAccount = accountDao.findById(dstId);
 
-            tx.beginWrite();
+        if (srcAccount == null || dstAccount == null) {
 
-            Account srcAccount = accountDao.findById(srcId);
-            Account dstAccount = accountDao.findById(dstId);
-
-            if (srcAccount == null || dstAccount == null) {
-                tx.rollback();
-                throw new IllegalArgumentException("invalid account id");
-            }
+            throw new IllegalArgumentException("invalid account id");
+        }
 
             // make sure transaction can be performed
             if (srcAccount.canDebit(amount) && dstAccount.canCredit(amount)) {
@@ -116,12 +83,7 @@ public class AccountServiceImpl implements AccountService {
             accountDao.saveOrUpdate(srcAccount);
             accountDao.saveOrUpdate(dstAccount);
 
-            tx.commit();
 
-        } catch (TransactionException ex) {
-
-            tx.rollback();
-        }
     }
 }
 

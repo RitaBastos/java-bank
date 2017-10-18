@@ -4,6 +4,7 @@ import org.academiadecodigo.javabank.model.Customer;
 import org.academiadecodigo.javabank.model.account.Account;
 import org.academiadecodigo.javabank.persistence.TransactionManager;
 import org.academiadecodigo.javabank.persistence.dao.CustomerDao;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.List;
@@ -22,25 +23,17 @@ public class CustomerServiceImpl implements CustomerService {
         this.customerDao = customerDao;
     }
 
+
     @Override
     public Customer findById(Integer id) {
 
-        try {
+        return customerDao.findById(id);
 
-            tx.beginRead();
-            return customerDao.findById(id);
-
-        } finally {
-            tx.commit();
-        }
     }
+
 
     @Override
     public double getBalance(Integer id) {
-
-        try {
-
-            tx.beginRead();
 
             Customer customer = customerDao.findById(id);
 
@@ -57,35 +50,28 @@ public class CustomerServiceImpl implements CustomerService {
 
             return balance;
 
-        } finally {
-            tx.commit();
-        }
     }
+
 
     @Override
     public Set<Integer> getCustomerAccountIds(Integer id) {
 
-        try {
 
-            tx.beginRead();
+        Customer customer = customerDao.findById(id);
 
-            Customer customer = customerDao.findById(id);
-
-            if (customer == null) {
-                throw new IllegalArgumentException("Customer does not exists");
-            }
-
-            Set<Integer> accountIds = new HashSet<>();
-            List<Account> accounts = customer.getAccounts();
-
-            for (Account account : accounts) {
-                accountIds.add(account.getId());
-            }
-
-            return accountIds;
-
-        } finally {
-            tx.commit();
+        if (customer == null) {
+            throw new IllegalArgumentException("Customer does not exists");
         }
+
+        Set<Integer> accountIds = new HashSet<>();
+        List<Account> accounts = customer.getAccounts();
+
+        for (Account account : accounts) {
+            accountIds.add(account.getId());
+        }
+
+        return accountIds;
+
+
     }
 }
